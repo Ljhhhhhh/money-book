@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import PriceList from './components/PriceList'
+import ViewTab from './components/ViewTab'
+import MonthPicker from './components/MonthPicker'
+import {LIST_VIEW} from './utility'
 
 const items = [
   {
@@ -12,7 +15,8 @@ const items = [
     category: {
       id: 1,
       name: '旅游',
-      type: 'outcome'
+      type: 'outcome',
+      iconName: 'ios-plane'
     }
   },
   {
@@ -23,14 +27,31 @@ const items = [
     category: {
       id: 1,
       name: '吃饭',
-      type: 'outcome'
+      type: 'outcome',
+      iconName: 'ios-plane'
     }
   }
 ]
+
 function App() {
+  const [currentView, setView] = useState(LIST_VIEW)
+  const [year, setYear] = useState(2019)
+  const [month, setMonth] = useState(5)
+
+  const onTabChange = useCallback(view => {
+    setView(view)
+  }, [])
+
+  const timeChange = useCallback((year, month) => {
+    setMonth(month)
+    setYear(year)
+  }, [])
+
   return (
     <div className="App">
-      <PriceList items={items}></PriceList>
+      <PriceList items={items} onModifyItem={item => {console.log(item);}} onDeleteItem={item => {console.log(item);}}></PriceList>
+      <ViewTab activeTab={currentView} onTabChange={onTabChange} />
+      <MonthPicker year={year} month={month} onChange={timeChange} />
     </div>
   );
 }
