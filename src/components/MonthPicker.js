@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { padLeft, range } from "../utility";
 
@@ -9,6 +9,18 @@ const MonthPicker = props => {
   const monthRange = range(12, 1);
   const yearRange = range(9, -4).map(number => number + year);
 
+  useEffect(() => {
+    document.addEventListener('click', handleClick, false)
+    return () => {
+      document.removeEventListener('click', handleClick, false)
+    }
+  }, [])
+
+  const handleClick = e => {
+    if (node.current.contains(e.target)) return
+    setOpen(false)
+  }
+ 
   const toggleDropdown = useCallback(
     e => {
       e.preventDefault();
@@ -28,8 +40,10 @@ const MonthPicker = props => {
     props.onChange(selectedYear, month);
   };
 
+  const node = useRef()
+
   return (
-    <div className="dropdown month-picker-component" id="monthPicker">
+    <div className="dropdown month-picker-component" ref={node}>
       <h4>选择月份</h4>
       <button
         className="btn btn-lg btn-secondary dropdown-toggle"

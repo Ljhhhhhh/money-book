@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Home from './containers/Home'
