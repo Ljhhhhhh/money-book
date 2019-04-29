@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useCallback } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./containers/Home";
@@ -5,6 +6,12 @@ import Create from './containers/Create'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+=======
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
+import Home from './containers/Home'
+>>>>>>> d4767afc2104899f080563cc0416843996e00145
 
 function App() {
   return (
