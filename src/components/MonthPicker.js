@@ -4,7 +4,7 @@ import { padLeft, range } from "../utility";
 
 const MonthPicker = props => {
   const { year, month } = props;
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
   const [selectedYear, setSelectedYear] = useState(year);
   const monthRange = range(12, 1);
   const yearRange = range(9, -4).map(number => number + year);
